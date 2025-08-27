@@ -222,10 +222,15 @@ public class Ranking extends JavaPlugin {
             int topN = leaderboardTopN;
             JSONObject playersData = dataManager.getPlayersData();
 
+            // 0. 计算并插入总数量
+           long total = getTotalCount(data);
+           nameToScore.put("§e总" + sidebarTitle + "数", (int) total);   // 显示用
+           validNames.add("§e总" + sidebarTitle + "数");
+
             // 1. 排序 TopN
             List<Map.Entry<String, Long>> topEntries = data.entrySet().stream()
                     .sorted(Map.Entry.<String, Long>comparingByValue(Comparator.reverseOrder()))
-                    .limit(topN)
+                    .limit(topN - 1)
                     .collect(Collectors.toList());
 
             // 2. 构建 UUID -> Name 和 Name -> Score 映射
@@ -328,5 +333,11 @@ public class Ranking extends JavaPlugin {
 
     public long getSAVE_DELAY_TICKS() {
         return SAVE_DELAY_TICKS;
+    }
+
+    private long getTotalCount(Map<String, Long> data) {
+        return data.values().stream()
+                   .mapToLong(Number::longValue)
+                   .sum();
     }
 }
