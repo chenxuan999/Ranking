@@ -2,7 +2,7 @@
 ![图片](https://bstats.org/signatures/bukkit/Ranking.svg)
 
 这是一个 Minecraft 服务器排行榜插件，根据玩家的统计数据（如放置方块数量、破坏方块数量、死亡次数、击杀数量和在线时长等）生成排行榜，并在游戏中显示。
-
+1
 ![图片](docs/img/scoreboards.png)
 
 ## 功能特点
